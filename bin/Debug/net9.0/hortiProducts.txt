@@ -1,0 +1,6 @@
+Laranja Bahia,15,Grams,1000,
+Laranja Pera,4,Grams,1000,
+Limão Tahiti,6,Grams,1000,
+Limão Siciliano,9,Grams,1000,
+Maçã,7,Grams,1000,
+Pera,5,Grams,1000,

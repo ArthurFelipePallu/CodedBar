@@ -1,0 +1,14 @@
+C:\Users\Arthut Pallu\RiderProjects\CodedBar\bin\Debug\net9.0\CodedBar.exe
+C:\Users\Arthut Pallu\RiderProjects\CodedBar\bin\Debug\net9.0\CodedBar.deps.json
+C:\Users\Arthut Pallu\RiderProjects\CodedBar\bin\Debug\net9.0\CodedBar.runtimeconfig.json
+C:\Users\Arthut Pallu\RiderProjects\CodedBar\bin\Debug\net9.0\CodedBar.dll
+C:\Users\Arthut Pallu\RiderProjects\CodedBar\bin\Debug\net9.0\CodedBar.pdb
+C:\Users\Arthut Pallu\RiderProjects\CodedBar\obj\Debug\net9.0\CodedBar.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Arthut Pallu\RiderProjects\CodedBar\obj\Debug\net9.0\CodedBar.AssemblyInfoInputs.cache
+C:\Users\Arthut Pallu\RiderProjects\CodedBar\obj\Debug\net9.0\CodedBar.AssemblyInfo.cs
+C:\Users\Arthut Pallu\RiderProjects\CodedBar\obj\Debug\net9.0\CodedBar.csproj.CoreCompileInputs.cache
+C:\Users\Arthut Pallu\RiderProjects\CodedBar\obj\Debug\net9.0\CodedBar.dll
+C:\Users\Arthut Pallu\RiderProjects\CodedBar\obj\Debug\net9.0\refint\CodedBar.dll
+C:\Users\Arthut Pallu\RiderProjects\CodedBar\obj\Debug\net9.0\CodedBar.pdb
+C:\Users\Arthut Pallu\RiderProjects\CodedBar\obj\Debug\net9.0\CodedBar.genruntimeconfig.cache
+C:\Users\Arthut Pallu\RiderProjects\CodedBar\obj\Debug\net9.0\ref\CodedBar.dll
