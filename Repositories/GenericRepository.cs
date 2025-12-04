@@ -1,33 +1,66 @@
-﻿using CodedBar.Classes.ProductClasses;
+﻿using System.Reflection;
+using CodedBar.Classes.ProductClasses;
 using CodedBar.Enums;
+using CodedBar.Exceptions;
 using CodedBar.Extensions;
 
 namespace CodedBar.Repositories;
 
 public class GenericRepository<T>  where T : BaseProduct
 {
-    protected List<T> _products;
+    private string _csfFormatFilePath;
+    private static Dictionary<Type, HashSet<T>> _itemsCollections = new Dictionary<Type, HashSet<T>>();
 
-
-    public GenericRepository()
+    static GenericRepository()
     {
-        _products = new List<T>();
        
     }
+
     
-    public void AddItem(T item)
+    public bool AddItem(T item)
     {
-        _products.Add(item);
+        var itemType = typeof(T);
+        if (!HasTypeAsKey(itemType))
+        {
+            AddCollectionOfType(itemType);
+        }
+        return _itemsCollections[itemType].Add(item);
+    }
+    public bool RemoveItem(T item)
+    {
+        var itemType = typeof(T);
+        if (!HasTypeAsKey(itemType))
+        {
+            AddCollectionOfType(itemType);
+        }
+        return _itemsCollections[itemType].Remove(item);
+    }
+    public IEnumerable<T> GetAllItems()
+    {
+        var itemType = typeof(T);
+        if (!HasTypeAsKey(itemType)) yield break;
+        foreach (var item in _itemsCollections[itemType])
+        {
+            yield return (T)item;
+        }
     }
 
-    public List<T> GetProducts()
+    // public T GetItemById(string itemId)
+    // {
+    //     var itemType = typeof(T);
+    //     if (!HasTypeAsKey(itemType)) 
+    //         throw new ProductException("[GENERIC REPOSITORY] Tried to retrieve an item by Id.But Type is not inserted into Dictionary.");
+    //     return _itemsCollections[itemType].
+    // }
+    
+    
+    private bool HasTypeAsKey(Type type)
     {
-        return _products;
+        return _itemsCollections.ContainsKey(type);
     }
 
-    public T GetItemById(string itemId)
+    private void AddCollectionOfType(Type type)
     {
-        
-        return (_products.FirstOrDefault( x => x.CreateIdFromName() == itemId)) ?? throw new InvalidOperationException();
+        _itemsCollections[type] = [];
     }
 }
