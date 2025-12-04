@@ -9,4 +9,5 @@ public interface ISavable
     //string ToJsonFormat();
     
     BaseProduct FromCsvFormat(string csvFormat);
+    
 }

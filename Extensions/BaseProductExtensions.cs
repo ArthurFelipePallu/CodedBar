@@ -54,6 +54,9 @@ static class BaseProductExtensions
     {
         return baseProduct.ToCsvFormat();
     }
-    
-    
+
+    public static BaseProduct ProductFromSaveFormat(this BaseProduct baseProduct, string formatedString)
+    {
+        return baseProduct.FromCsvFormat(formatedString);
+    }
 }
