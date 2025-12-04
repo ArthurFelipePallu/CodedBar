@@ -2,16 +2,16 @@
 using System.Text;
 using CodedBar.Enums;
 using CodedBar.Extensions;
+using CodedBar.Interfaces;
 using CodedBar.Structs;
 
 namespace CodedBar.Classes.ProductClasses;
 
-public class BaseProduct
+public class BaseProduct : ISavable
 {
-
     public ProductType ProductType { get; set; }
     
-    private float _cost;
+    protected float _cost;
     
     protected string  Id { get; set; }
 
@@ -43,29 +43,36 @@ public class BaseProduct
         return _cost/Measure.Quantity;
     }
 
-    public virtual string ToCsvString()
+
+    public virtual string ToCsvFormat()
     {
-        var builder = new StringBuilder()
-            .Append(ProductType)
-            .Append(",").Append(Name)
-            .Append(",").Append(_cost)
-            .Append(",").Append(Measure.Unit)
-            .Append(",").Append(Measure.Quantity)
-            .Append(",").Append(Description);
+        var builder = new StringBuilder() // INDEX
+            .Append(ProductType)                         //  0
+            .Append(" - ").Append(Name)                  //  1
+            .Append(" - ").Append(_cost)                 //  2
+            .Append(" - ").Append(Measure.Unit)          //  3
+            .Append(" - ").Append(Measure.Quantity)      //  4
+            .Append(" - ").Append(Description);          //  5
+
         return builder.ToString();
     }
 
-    public override string ToString()
+    public virtual BaseProduct FromCsvFormat(string csvFormat)
     {
-        var builder = new StringBuilder()
-            .Append("Base Product: ").Append(ProductType)
-            .Append(" - ").Append(Name)
-            .Append(" - ").Append(_cost)
-            .Append(" - ").Append(Measure.Unit)
-            .Append(" - ").Append(Measure.Quantity)
-            .Append(" - ").Append(Description)
-            .Append(" - ").Append(Id);
+       var csvData = csvFormat.Split(',');
 
-        return builder.ToString();
+       return new BaseProduct()
+       {
+           ProductType = (ProductType)Enum.Parse(typeof(ProductType), csvData[0]),
+           Name = csvData[1],
+           _cost = float.Parse(csvData[2]),
+           Measure = new Measure
+           {
+               Unit = (UnitOfMeasure)Enum.Parse(typeof(UnitOfMeasure), csvData[0]),
+               Quantity = float.Parse(csvData[4])
+           },
+           Description = csvData[5]
+       };
+
     }
 }

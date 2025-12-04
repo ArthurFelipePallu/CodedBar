@@ -27,6 +27,7 @@ public class GenericRepository<T>  where T : BaseProduct
 
     public T GetItemById(string itemId)
     {
+        
         return (_products.FirstOrDefault( x => x.CreateIdFromName() == itemId)) ?? throw new InvalidOperationException();
     }
 }

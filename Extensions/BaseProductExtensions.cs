@@ -52,7 +52,7 @@ static class BaseProductExtensions
 
     public static string ProductToSaveFormat(this BaseProduct baseProduct)
     {
-        return baseProduct.ToCsvString();
+        return baseProduct.ToCsvFormat();
     }
     
     

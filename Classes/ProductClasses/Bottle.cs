@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using CodedBar.Enums;
+using CodedBar.Structs;
 
 namespace CodedBar.Classes.ProductClasses;
 
@@ -7,33 +8,40 @@ public class Bottle : BaseProduct
 {
     public BottleType BottleType { get; set; }
 
-    public Bottle( string name, BottleType type, float cost, float quantityOfMeasure , UnitOfMeasure unit, string description = "") : base( name, cost, unit, quantityOfMeasure, description)
+    public Bottle(ProductType prodType, BottleType bottleType, string name, float cost, float quantityOfMeasure , UnitOfMeasure unit, string description = "") : base(prodType, name, cost, unit, quantityOfMeasure, description)
     {
-        BottleType = type;
-        
+        BottleType = bottleType;
     }
 
-    public override string ToCsvString()
+    private Bottle()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override string ToCsvFormat()
     {
         var sb = new StringBuilder();
-        sb.AppendJoin(",",Name,BottleType.ToString(),Cost(),Measure.Quantity,Measure.Unit,Description);
+        sb.AppendJoin(",",ProductType.ToString(),BottleType.ToString(),Name,Cost(),Measure.Quantity,Measure.Unit,Description);
         return sb.ToString();
     }
 
-
-    public Bottle FromSavableString(string savableString)
+    public override BaseProduct FromCsvFormat(string csvFormat)
     {
-        var split = savableString.Split(',');
-        Enum.TryParse(split[1], out BottleType type);
-        Enum.TryParse(split[4], out UnitOfMeasure unit);
-        var cost = float.Parse(split[2]);
-        var quantity = float.Parse(split[3]);
-        return new Bottle(     
-                      split[0],
-                              type,
-                              cost,
-                             quantity,
-                               unit, 
-                     split[5]);
+        var csvData = csvFormat.Split(',');
+        return new Bottle()
+        {
+            ProductType = (ProductType)Enum.Parse(typeof(ProductType), csvData[0]),
+            BottleType = (BottleType)Enum.Parse(typeof(BottleType), csvData[1]),
+            Name = csvData[2],
+            _cost = float.Parse(csvData[3]),
+            Measure = new Measure
+            {
+                Unit = (UnitOfMeasure)Enum.Parse(typeof(UnitOfMeasure), csvData[4]),
+                Quantity = float.Parse(csvData[5])
+            },
+            Description = csvData[6]
+        };
+        
     }
+    
 }
