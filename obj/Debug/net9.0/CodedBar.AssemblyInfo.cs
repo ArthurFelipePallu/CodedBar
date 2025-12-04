@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CodedBar")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+730df868cf7bd59b7c79bcf197593f18a420709c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9d91d2c831ea144e28bea70c3a11d0b203f373fd")]
 [assembly: System.Reflection.AssemblyProductAttribute("CodedBar")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CodedBar")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
