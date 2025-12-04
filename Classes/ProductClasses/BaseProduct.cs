@@ -9,7 +9,7 @@ namespace CodedBar.Classes.ProductClasses;
 public class BaseProduct
 {
 
-    
+    public ProductType ProductType { get; set; }
     
     private float _cost;
     
@@ -25,8 +25,9 @@ public class BaseProduct
     {
         throw new NotImplementedException();
     }
-    public BaseProduct(string name, float cost, UnitOfMeasure unit,float quantityOfMeasure,string description = "") 
+    public BaseProduct(ProductType type,string name, float cost, UnitOfMeasure unit,float quantityOfMeasure,string description = "") 
     {
+        ProductType = type;
         Name = name;
         _cost = cost;
         Description = description;
@@ -45,7 +46,8 @@ public class BaseProduct
     public virtual string ToCsvString()
     {
         var builder = new StringBuilder()
-            .Append(Name)
+            .Append(ProductType)
+            .Append(",").Append(Name)
             .Append(",").Append(_cost)
             .Append(",").Append(Measure.Unit)
             .Append(",").Append(Measure.Quantity)
@@ -56,7 +58,8 @@ public class BaseProduct
     public override string ToString()
     {
         var builder = new StringBuilder()
-            .Append("Base Product: ").Append(Name)
+            .Append("Base Product: ").Append(ProductType)
+            .Append(" - ").Append(Name)
             .Append(" - ").Append(_cost)
             .Append(" - ").Append(Measure.Unit)
             .Append(" - ").Append(Measure.Quantity)
